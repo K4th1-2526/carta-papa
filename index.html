@@ -7,7 +7,20 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:'Press Start 2P',monospace;overflow:hidden;touch-action:none;}
+body{
+background:#0a0a0a;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+font-family:'Press Start 2P',monospace;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+touch-action:none;
+}
 #wrapper{position:relative;width:640px;max-width:100vw;}
 #hud{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#111;border:2px solid #333;font-size:7px;color:#fff;margin-bottom:2px;flex-wrap:wrap;gap:2px;}
 .hud-bar{display:flex;align-items:center;gap:4px;}
@@ -130,6 +143,21 @@ canvas{image-rendering:pixelated;}
 #hud{font-size:6px;}
 #finalScreen{padding:16px 10px;}
 #finalScreen h1{font-size:9px;}
+
+#gameCanvas{
+    width:100vw;
+    height:auto;
+    max-height:55vh;
+}
+
+#mobileControls{
+    display:block;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    z-index:9999;
+}
 }
 </style>
 </head>
@@ -165,19 +193,49 @@ canvas{image-rendering:pixelated;}
 <canvas id="gameCanvas" width="640" height="360"></canvas>
 <div id="msg">← → Mover | ↑/Z Saltar | X Llave | C Fuego (⚡)</div>
 
-<div id="mobileControls">
+
 <div class="ctrl-row">
 <div class="ctrl-dpad">
 <div></div>
-<div class="ctrl-btn" id="btn-up" ontouchstart="mobileKey('ArrowUp',true)" ontouchend="mobileKey('ArrowUp',false)">↑</div>
-<div></div>
-<div class="ctrl-btn" id="btn-left" ontouchstart="mobileKey('ArrowLeft',true)" ontouchend="mobileKey('ArrowLeft',false)">←</div>
-<div></div>
-<div class="ctrl-btn" id="btn-right" ontouchstart="mobileKey('ArrowRight',true)" ontouchend="mobileKey('ArrowRight',false)">→</div>
+<div class="ctrl-btn" id="btn-left"
+ontouchstart="mobileKey('ArrowLeft',true)"
+ontouchend="mobileKey('ArrowLeft',false)"
+onmousedown="mobileKey('ArrowLeft',true)"
+onmouseup="mobileKey('ArrowLeft',false)">
+←
 </div>
-<div class="ctrl-actions">
-<div class="ctrl-btn action" ontouchstart="mobileKey('x',true)" ontouchend="mobileKey('x',false)">🔧 X</div>
-<div class="ctrl-btn fire-btn" ontouchstart="mobileKey('c',true)" ontouchend="mobileKey('c',false)">🔥 C</div>
+<div class="ctrl-btn" id="btn-up"
+ontouchstart="mobileKey('ArrowUp',true)"
+ontouchend="mobileKey('ArrowUp',false)"
+onmousedown="mobileKey('ArrowUp',true)"
+onmouseup="mobileKey('ArrowUp',false)">
+↑
+</div>
+
+<div class="ctrl-btn" id="btn-right"
+ontouchstart="mobileKey('ArrowRight',true)"
+ontouchend="mobileKey('ArrowRight',false)"
+onmousedown="mobileKey('ArrowRight',true)"
+onmouseup="mobileKey('ArrowRight',false)">
+→
+</div>
+
+<div class="ctrl-btn action"
+ontouchstart="mobileKey('x',true)"
+ontouchend="mobileKey('x',false)"
+onmousedown="mobileKey('x',true)"
+onmouseup="mobileKey('x',false)">
+🔧 X
+</div>
+
+<div class="ctrl-btn fire-btn"
+ontouchstart="mobileKey('c',true)"
+ontouchend="mobileKey('c',false)"
+onmousedown="mobileKey('c',true)"
+onmouseup="mobileKey('c',false)">
+🔥 C
+</div>
+</div>
 </div>
 </div>
 </div>
